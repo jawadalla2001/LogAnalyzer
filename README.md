@@ -1,86 +1,75 @@
-# Log Analyzer Project
+# Log Analyzer - DevOps Project
 
-**Auteur:** Alla Jawad /Pseudo GitHub
+## 📋 Description
+Outil CLI d'analyse automatique de fichiers journaux développé dans le cadre d'un exercice DevOps.
 
-## Description
+## 🚀 Fonctionnalités
+- Analyse automatique des fichiers log.txt
+- Comptage des niveaux ERROR, WARNING, INFO
+- Génération de rapport.txt avec statistiques
+- Condition d'échec si plus de 5 erreurs détectées
+- Générateur de logs d'exemple pour tests
 
-Ce projet est un outil CLI (Command Line Interface) développé en Python pour analyser des fichiers journaux (logs) générés par des serveurs. L'outil compte les occurrences de différents niveaux de logs (ERROR, WARNING, INFO) et génère un rapport statistique.
-
-Ce projet a été développé dans le cadre d'un exercice DevOps visant à mettre en pratique les concepts de développement, de versionnement avec Git et GitHub, d'intégration continue avec GitHub Actions, et de déploiement et gestion avec Jenkins.
-
-## Fonctionnalités
-
-*   Lecture d'un fichier `log.txt` (ou un fichier spécifié).
-*   Comptage des lignes totales, des erreurs (ERROR), des avertissements (WARNING), et des informations (INFO).
-*   Génération d'un fichier `rapport.txt` (ou un fichier spécifié) avec les statistiques et pourcentages.
-*   Option pour créer un fichier `log.txt` simulé avec des données aléatoires.
-*   Sortie avec un code d'erreur si le nombre d'erreurs dépasse un seuil configurable (utile pour l'intégration CI/CD).
-
-## Instructions d'utilisation
-
-### Prérequis
-
-*   Python 3.x
-
-### Installation
-
-Aucune installation spécifique de package n'est requise pour le script de base, car il utilise uniquement les bibliothèques Python standard.
-
-Clonez le dépôt (ou téléchargez les fichiers) :
+## 🛠️ Installation
 ```bash
-git clone [URL_DU_DEPOT_GIT]
-cd [NOM_DU_DOSSIER_PROJET]
+git clone https://github.com/[votre-username]/log-analyzer.git
+cd log-analyzer
+pip install -r requirements.txt
 ```
 
-### Exécution du script
+## 📖 Utilisation
 
-Pour exécuter le script, utilisez la commande suivante dans votre terminal :
-
+### Analyse d'un fichier de log
 ```bash
-python log_analyzer.py [OPTIONS]
+python log_analyzer.py log.txt
 ```
 
-**Options disponibles :**
+### Génération d'un fichier de test
+```bash
+python log_analyzer.py sample_log.txt --generate-sample
+```
 
-*   `--log_file CHEMIN_FICHIER_LOG`: Spécifie le chemin vers le fichier log à analyser. Par défaut : `log.txt`.
-*   `--output_file CHEMIN_FICHIER_RAPPORT`: Spécifie le chemin vers le fichier de rapport de sortie. Par défaut : `rapport.txt`.
-*   `--error_threshold NOMBRE`: Définit le seuil d'erreurs. Si le nombre d'erreurs détectées dépasse ce seuil, le script se terminera avec un code d'erreur 1 (échec). Par défaut : `5`.
-*   `--create_dummy_log`: Si cette option est utilisée, un fichier `log.txt` (ou celui spécifié par `--log_file`) sera créé avec des entrées de log simulées avant l'analyse.
+### Spécifier un fichier de rapport personnalisé
+```bash
+python log_analyzer.py log.txt -o mon_rapport.txt
+```
 
-**Exemples :**
+## 🔧 Options
+- `log_file`: Chemin vers le fichier de log à analyser
+- `-o, --output`: Fichier de sortie pour le rapport (défaut: rapport.txt)
+- `--generate-sample`: Génère un fichier de log d'exemple
 
-1.  **Analyser le fichier `log.txt` par défaut et générer `rapport.txt` :**
-    ```bash
-    python log_analyzer.py
-    ```
+## 📊 Format de sortie
+Le script génère un rapport détaillé avec:
+- Statistiques de comptage par niveau
+- Évaluation des risques
+- Code de sortie (0: succès, 1: échec si >5 erreurs)
 
-2.  **Créer un fichier `log.txt` simulé puis l'analyser :**
-    ```bash
-    python log_analyzer.py --create_dummy_log
-    ```
+## 🏗️ Architecture DevOps
+- **Versionnement**: Git/GitHub avec branches main/dev
+- **CI/CD**: GitHub Actions pour tests automatisés
+- **Automatisation**: Jenkins avec jobs freestyle et pipeline
+- **Planification**: Trello pour gestion Agile
+- **Sécurité**: Rôles et permissions Jenkins
 
-3.  **Analyser un fichier log spécifique `server.log` et définir un seuil d'erreur à 10 :**
-    ```bash
-    python log_analyzer.py --log_file server.log --error_threshold 10
-    ```
+## 🧪 Tests
+```bash
+# Génération d'un log de test
+python log_analyzer.py test_log.txt --generate-sample
 
-## Structure du projet
+# Analyse du log de test
+python log_analyzer.py test_log.txt
+```
 
-*   `log_analyzer.py`: Le script Python principal contenant la logique de l'analyseur.
-*   `log.txt`: Fichier log d'exemple (peut être généré par le script).
-*   `rapport.txt`: Fichier de rapport généré par le script.
-*   `README.md`: Ce fichier.
-*   `.github/workflows/ci.yml`: Fichier de configuration pour GitHub Actions (CI).
-*   `Jenkinsfile`: Fichier de configuration pour le pipeline Jenkins.
+## 👥 Collaboration
+Pour contribuer au projet:
+1. Fork le repository
+2. Créer une branche feature
+3. Commit les modifications
+4. Créer une Pull Request
 
-## Étapes du projet DevOps
+## 📝 Licence
+MIT License
 
-1.  **Développement initial & GitHub:**
-    *   Création du projet CLI (Python).
-    *   Initialisation du dépôt Git local et distant (GitHub).
-    *   Création du `README.md`.
-    *   Utilisation de branches (`dev`) et Pull Requests.
-2.  **Planification Agile - Trello:** Organisation des tâches.
-3.  **CI/CD - GitHub Actions:** Mise en place d'un workflow pour vérifier le script.
-4.  **Jenkins - build automatique:** Création d'un job freestyle et d'un pipeline scripté.
-5.  **Sécurité et gestion des rôles Jenkins:** Configuration des utilisateurs et des rôles. 
+## 👨‍💻 Auteur
+[Votre Nom] - Exercice DevOps LogAnalyzer
