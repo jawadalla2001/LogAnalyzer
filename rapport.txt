@@ -1,0 +1,11 @@
+Rapport d'analyse du fichier log: log.txt
+Date de génération: 2025-05-31 10:11:03
+==============================
+Nombre total de lignes analysées: 20
+Nombre d'erreurs (ERROR): 10
+Nombre d'avertissements (WARNING): 3
+Nombre d'informations (INFO): 7
+==============================
+Pourcentage d'erreurs: 50.00%
+Pourcentage d'avertissements: 15.00%
+Pourcentage d'informations: 35.00%
