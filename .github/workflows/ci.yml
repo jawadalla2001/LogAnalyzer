@@ -1,0 +1,45 @@
+name: Analyseur de Logs CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout du code
+      uses: actions/checkout@v4
+
+    - name: Configuration de Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x' # Utilise la dernière version stable de Python 3
+
+    - name: Exécution du script pour test
+      run: |
+        python log_analyzer.py --create_dummy_log --log_file ci_dummy_log.txt
+        python log_analyzer.py --log_file ci_dummy_log.txt --output_file ci_test_rapport.txt --error_threshold 1000
+        # On utilise un seuil d'erreur élevé pour ce test CI,
+        # car l'objectif est de vérifier que le script s'exécute et génère un rapport,
+        # pas de tester la logique de seuil d'erreur elle-même (qui est pour Jenkins).
+
+    - name: Vérification de la création du rapport
+      run: |
+        if [ -f ci_test_rapport.txt ]; then
+          echo "Rapport de test (ci_test_rapport.txt) généré avec succès."
+        else
+          echo "Erreur: Le fichier rapport de test (ci_test_rapport.txt) n'a pas été créé."
+          exit 1
+        fi
+    
+    - name: Upload execution artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: log-analysis-results
+        path: |
+          ci_dummy_log.txt
+          ci_test_rapport.txt 
